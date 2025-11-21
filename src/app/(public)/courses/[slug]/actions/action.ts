@@ -7,8 +7,7 @@ import { stripe } from "@/lib/stripe";
 import { ApiResponse } from "@/lib/types";
 import { request } from "@arcjet/next";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import Stripe from "stripe";
+
 
 const aj = arcjet.withRule(
   fixedWindow({
@@ -101,7 +100,8 @@ export async function enrollmentCourseAction(
         status: "Active",
       },
     });
-    revalidatePath(`/courses/${courseId}`);
+   
+    revalidatePath(`/courses/${course.id}`);
     return {
       status: "success",
       message: `You have been enrolled in ${course.title} successfully`,

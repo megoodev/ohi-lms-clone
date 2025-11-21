@@ -5,6 +5,7 @@ import React, { useTransition } from "react";
 import { enrollmentCourseAction } from "../actions/action";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { redirect } from "next/navigation";
 
 const EnrollmentButton = ({ courseId }: { courseId: string }) => {
   const [pending, startTransition] = useTransition();
@@ -17,7 +18,7 @@ const EnrollmentButton = ({ courseId }: { courseId: string }) => {
         return;
       }
       if (data.status === "success") {
-        
+        redirect(`/payment/success`);
         toast.success(data.message);
       } else if (data.status === "error") {
         toast.error(data.message);
